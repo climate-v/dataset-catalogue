@@ -1,5 +1,10 @@
-# datasets-earth
-Catalogue for environmental datasets on the internet
+<h1 align='center'>datasets-earth</h1>
+
+<p align=center>
+  Catalogue for environmental datasets on the internet. <br><br>
+  <img src="assets/map.svg" width="569"/>
+</p>
+
 
 ## Goal
 

@@ -130,3 +130,5 @@ dmypy.json
 
 # files in the container
 .bash_history
+.local/
+.python_history

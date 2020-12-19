@@ -21,7 +21,7 @@
         "language":   { "type": "array", "items": { "type": "string"} },
         "relation":   { "type": "array", "items": { "type": "string"} },
         "coverage":   { "type": "array", "items": { "type": "string"} },
-        "rights":   { "type": "array", "items": { "type": "string"} }
+        "rights":  { "$ref": "#/definitions/license" }
     },
 
     "definitions": {
@@ -32,6 +32,25 @@
                 "type": "string",
                 "enum": ["netCDF3", "pdf", "csv", "wms", "wps", "netCDF4", "http"]
             }
+        },
+        "license": {
+            "type": "string",
+            "description": "License for the data",
+            "enum": [
+                "public domain",
+                "PDDL",
+                "CDLA-Permissive-1.0",
+                "CDLA-Sharing-1.0",
+                "ODC-BY",
+                "ODC-ODbL",
+                "CC-0",
+                "CC-BY",
+                "CC BY-NC",
+                "CC BY-ND",
+                "CC-BY-SA",
+                "CC BY-NC-SA",
+                "CC BY-NC-ND"
+            ]
         }
     }
 

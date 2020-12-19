@@ -4,8 +4,7 @@ title:
 subject:
     - Lorem ipsum
     - Dataset Discovery Service
-rights:
-    - MIT
+rights: CC-BY
 format:
     - pdf
     - netCDF4

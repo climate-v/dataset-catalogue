@@ -15,12 +15,24 @@
         "contributor":   { "type": "array", "items": { "type": "string"} },
         "date":   { "type": "array", "items": { "type": "string"} },
         "type":   { "type": "array", "items": { "type": "string"} },
-        "format":   { "type": "array", "items": { "type": "string"} },
+        "format":   { "$ref": "#/definitions/dataformats" },
         "identifier":   { "type": "array", "items": { "type": "string"} },
         "source":   { "type": "array", "items": { "type": "string"} },
         "language":   { "type": "array", "items": { "type": "string"} },
         "relation":   { "type": "array", "items": { "type": "string"} },
         "coverage":   { "type": "array", "items": { "type": "string"} },
         "rights":   { "type": "array", "items": { "type": "string"} }
+    },
+
+    "definitions": {
+        "dataformats": {
+            "type": "array",
+            "description": "Supported data formats for the dataset",
+            "items": {
+                "type": "string",
+                "enum": ["netCDF3", "pdf", "csv", "wms", "wps", "netCDF4", "http"]
+            }
+        }
     }
+
 }

@@ -6,3 +6,7 @@ subject:
     - Dataset Discovery Service
 rights:
     - MIT
+format:
+    - pdf
+    - netCDF4
+    - http

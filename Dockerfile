@@ -19,17 +19,11 @@ ENV \
   POETRY_VERSION=1.1.4
 
 RUN pip3 install "poetry==$POETRY_VERSION"
-
-RUN groupadd --gid 1000 python && \
-    useradd  --uid 1000 --gid python --shell /bin/bash --home-dir /home/python python
-
-USER 1000
-COPY --chown=python:python . /home/python/
+RUN poetry config virtualenvs.create false
 
 WORKDIR /home/python
 COPY poetry.lock pyproject.toml /home/python/
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-interaction --ansi
+RUN poetry install --no-interaction --no-ansi
 
 COPY . /home/python
 

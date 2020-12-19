@@ -4,7 +4,7 @@ services:
   earth:
     image: dataset-earth
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     volumes:
       - "./:/home/python"

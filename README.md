@@ -55,3 +55,25 @@ Github Actions, database and website updates will be the same as adding a new da
 ### Deleting datasets
 Open PR with a missing yaml file of the the dataset you want to delete.
 Github Actions, database and website updates will be the same as adding a new dataset.
+
+## Docker
+
+- Build docker image
+```bash
+docker build --tag datasets-earth .
+```
+
+- Run docker image
+```bash
+docker run datasets-earth
+```
+
+- Enter docker image
+```
+docker run -it datasets-earth bash
+```
+
+- Add new dependency
+```bash
+docker run -v $(pwd):/code datasets-earth poetry add <package>
+```

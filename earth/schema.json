@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://datasets.earth/schemas/schema.json",
+
+    "title": "Dataset",
+    "description": "A single dataset in the catalogue",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "title":   { "type": "array", "items": { "type": "string"} },
+        "creator":   { "type": "array", "items": { "type": "string"} },
+        "subject":   { "type": "array", "items": { "type": "string"} },
+        "description":   { "type": "array", "items": { "type": "string"} },
+        "publisher":   { "type": "array", "items": { "type": "string"} },
+        "contributor":   { "type": "array", "items": { "type": "string"} },
+        "date":   { "type": "array", "items": { "type": "string"} },
+        "type":   { "type": "array", "items": { "type": "string"} },
+        "format":   { "type": "array", "items": { "type": "string"} },
+        "identifier":   { "type": "array", "items": { "type": "string"} },
+        "source":   { "type": "array", "items": { "type": "string"} },
+        "language":   { "type": "array", "items": { "type": "string"} },
+        "relation":   { "type": "array", "items": { "type": "string"} },
+        "coverage":   { "type": "array", "items": { "type": "string"} },
+        "rights":   { "type": "array", "items": { "type": "string"} }
+    }
+}

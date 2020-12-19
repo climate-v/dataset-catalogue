@@ -78,6 +78,11 @@ docker run -it datasets-earth bash
 docker run -v $(pwd):/code datasets-earth poetry add <package>
 ```
 
+- Validate file
+```bash
+docker run -v $(pwd):/code datasets-earth validate <yml file> <schema>
+```
+
 ## Resources
 
 - https://medium.com/better-programming/api-development-in-python-with-flask-resful-and-mongodb-71e56a70b3a6

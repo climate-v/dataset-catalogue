@@ -77,3 +77,8 @@ docker run -it datasets-earth bash
 ```bash
 docker run -v $(pwd):/code datasets-earth poetry add <package>
 ```
+
+## Resources
+
+- https://medium.com/better-programming/api-development-in-python-with-flask-resful-and-mongodb-71e56a70b3a6
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-flask-with-mongodb-and-docker

@@ -3,4 +3,4 @@ var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 
 var formats = ["pdf", "wsm", "wms"];
 
-var licenses = ["(no license)", "CC-BY-SD", "CC-BY"];
+var regions = ["Europe", "Americas","Global"];

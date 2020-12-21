@@ -13,6 +13,10 @@
     display: inline-block;
   }
 
+  div {
+    margin-top: 5px;
+  }
+
   input {
     border: 1px solid transparent;
     background-color: #f1f1f1;
@@ -23,7 +27,6 @@
   input[type=text] {
     background-color: #f1f1f1;
     width: 100%;
-    margin-top: 5px;
   }
 
   input[type=submit] {

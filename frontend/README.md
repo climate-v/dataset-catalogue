@@ -15,3 +15,4 @@ Either using one major search bar or an advanced search bar using contraints on 
 - https://www.jqueryscript.net/demo/Bootstrap-4-Select-Dropdown/ <br> select plugin
 - https://stackoverflow.com/questions/61479708/how-do-i-use-react-use-fuse <br> fuse with REACT
 - https://github.com/balazssagi/use-fuse <br> use fuse REACT
+- https://html5-tutorial.net/forms/checkboxes/ <br> Checkbox and Javascripts

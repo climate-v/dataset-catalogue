@@ -19,14 +19,19 @@
     <h2>Advanced Search</h2>
 
     <form autocomplete="off" action="/advanced_search.html">
+        <div class="autocomplete" style="width:505px;">
+            <input type="checkbox" name="licence" value="CC-0">CC-0
+            <input type="checkbox" name="licence" value="CC-BY-ND">CC-BY-ND
+            <input type="checkbox" name="licence" value="CC-BY">CC-BY
+        </div> <br>
         <div class="autocomplete" style="width:300px;">
-        <input id="countries" type="text" name="country" placeholder="Country">
+            <input id="countries" type="text" name="country" placeholder="Country">
         </div>
         <div class="autocomplete" style="width:200px;">
-        <input id="formats" type="text" name="format" placeholder="Format">
+            <input id="formats" type="text" name="format" placeholder="Format">
         </div><br>
         <div class="autocomplete" style="width:505px;">
-        <input id="licenses" type="text" name="license" placeholder="License">
+            <input id="licenses" type="text" name="license" placeholder="License">
         </div>
     <input type="submit">
     </form>

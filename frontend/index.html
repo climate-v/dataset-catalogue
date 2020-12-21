@@ -8,6 +8,12 @@
     <script type="text/javascript" src="scripts/consts.js"></script>
 </head>
 <body>
+    <h2>Dataset Search</h2>
+    <form autocomplete="off" action="/dataset.html">
+        <div class=autocomplete style="width: 505px;">
+            <input id=datasetsearch type="text" name="dataset" placeholder="Dataset">
+        </div>
+    </form>
     <h2>Country Search</h2>
 
     <form autocomplete="off" action="/search.html">
@@ -46,7 +52,11 @@
 
     <hr class="dashed">
 
+    <h2> Dataset Search Results </h2>
 
+    <ul id="datasetsearchresults">
+        <li>Empty</li>
+    </ul>
 
     <h2>Country Search Results</h2>
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="autocomplete.js"></script>
+    <script type="text/javascript" src="consts.js"></script>
+</head>
+<body>
+    <h2>Search</h2>
+
+    <form autocomplete="off" action="/search.html">
+        <div class="autocomplete" style="width:505px;">
+          <input id="search" type="text" name="search" placeholder="Search">
+        </div>
+      <input type="submit">
+    </form>
+
+    <h2>Advanced Search</h2>
+
+    <form autocomplete="off" action="/advanced_search.html">
+        <div class="autocomplete" style="width:300px;">
+        <input id="countries" type="text" name="country" placeholder="Country">
+        </div>
+        <div class="autocomplete" style="width:200px;">
+        <input id="formats" type="text" name="format" placeholder="Format">
+        </div><br>
+        <div class="autocomplete" style="width:505px;">
+        <input id="licenses" type="text" name="license" placeholder="License">
+        </div>
+    <input type="submit">
+    </form>
+
+    <script>
+        autocomplete(document.getElementById("countries"), countries);
+        autocomplete(document.getElementById("formats"), formats);
+        autocomplete(document.getElementById("licenses"), licenses);
+    </script>
+
+</body>
+</html>

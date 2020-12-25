@@ -21,6 +21,14 @@ yaml_files = glob(os.path.join(catalog_location, "*.yml"))
 db = create_db(yaml_files)
 
 
+def filter_by_keywords(db, request):
+    return db
+
+
+def filter_by_detailed_search(db, request):
+    return db
+
+
 def _uniques(key):
     result = set()
     for x in db:
@@ -35,14 +43,15 @@ def hello_world():
 
 @app.route('/search')
 def search():
-    keywords = request.args.get("keywords", "")
-    return render_template("search.html", keywords=keywords)
+    results = filter_by_keywords(db, request.args)
+    return render_template("search.html", **request.args, results=results)
 
 
 @app.route('/detailedsearch')
 def detailedsearch(rights=None):
-    rights = _uniques('rights')
-    return render_template("detailedsearch.html", rights=rights)
+    rights = _uniques('rights')  # Fix options
+    results = filter_by_detailed_search(db, request.args)
+    return render_template("detailedsearch.html", **request.args, rights=rights, results=results)
 
 
 @app.route('/dataset/<dataset>')

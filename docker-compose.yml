@@ -1,6 +1,14 @@
 version: "3.8"
 
 services:
+
+  db:
+    image: postgres:12.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
+
   earth:
     image: dataset-earth
     ports:
@@ -16,3 +24,5 @@ services:
       FLASK_RUN_PORT: 5050
       FLASK_RUN_HOST: "0.0.0.0"
       CATALOG_FOLDER: "/home/python/tests"
+    depends_on:
+      - db

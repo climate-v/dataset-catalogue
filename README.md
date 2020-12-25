@@ -83,7 +83,52 @@ docker run -v $(pwd):/code datasets-earth poetry add <package>
 docker run -v $(pwd):/code datasets-earth validate <yml file> <schema>
 ```
 
+## Postgresql JSON Query
+
+Create table with id and info where json data is saved in info
+```
+CREATE TABLE orders (
+ id serial NOT NULL PRIMARY KEY,
+ info json NOT NULL
+);
+```
+Add several rows
+```
+INSERT INTO orders (info)
+VALUES('{ "customer": "Lily Bush", "items": {"product": "Diaper","qty": 24}}'),
+      ('{ "customer": "Josh William", "items": {"product": "Toy Car","qty": 1}}'),
+      ('{ "customer": "Mary Clark", "items": {"product": "Toy Train","qty": 2}}');
+```
+
+Search individual keys using LIKE
+```
+SELECT * FROM orders WHERE info ->> 'customer' LIKE '%osh%';
+```
+
+Add trigram extension
+```
+CREATE EXTENSION pg_trgm;
+```
+
+Search using trigrams
+```
+SELECT * FROM orders WHERE SIMILARITY(info ->> 'customer', 'Jos') > 0.1;
+```
+
+Search using trigrams
+```
+SELECT * FROM orders WHERE SIMILARITY(info ->> 'customer', 'Jos') > 0.1;
+```
+
+Search and sort all entries using trigrams
+```
+SELECT * FROM orders ORDER BY SIMILARITY(info ->> 'customer', 'Jos') DESC LIMIT 3;
+```
+
+
 ## Resources
 
 - https://medium.com/better-programming/api-development-in-python-with-flask-resful-and-mongodb-71e56a70b3a6
 - https://www.digitalocean.com/community/tutorials/how-to-set-up-flask-with-mongodb-and-docker
+- https://www.freecodecamp.org/news/fuzzy-string-matching-with-postgresql/
+- https://www.postgresqltutorial.com/postgresql-json/

@@ -1,24 +1,21 @@
-{% extends "base.html" %}
+{% extends "basesearch.html" %}
 {% block title %} Search {% endblock %}
 
-{% block content %}
-    <h1>Detailed Search</h1>
-    <div id="searchform">
-        <form autocomplete="off" action="/detailedsearch">
-            <input id="countries" type="text" name="country" placeholder="Country"><br>
-            <input id="formats" type="text" name="format" placeholder="Format"><br>
-            <input id="regions" type="text" name="region" placeholder="Region"><br>
-            <label for="before">Before:</label>
-            <input id="before" type="date" name="before"><br>
-            <label for="after">After:</label>
-            <input id="after" type="date" name="after"><br>
-            {% if rights %}
-                <label for="license">Licenses:</label>
-                {% for license in rights %}
-                    <input type="checkbox" name="licence" value="{{license}}">{{license}}
-                {% endfor %}
-            {% endif %}<br>
-            <input type="submit" value="Search">
-        </form>
-    </div>
+{% block searchform %}
+<form autocomplete="off" action="/detailedsearch">
+    <input id="countries" type="text" name="country" placeholder="Country" valuue="{{ country }}"><br>
+    <input id="formats" type="text" name="format" placeholder="Format" value="{{ format }}"><br>
+    <input id="regions" type="text" name="region" placeholder="Region" value="{{ region }}"><br>
+    <label for="before">Before:</label>
+    <input id="before" type="date" name="before" value="{{before}}"><br>
+    <label for="after">After:</label>
+    <input id="after" type="date" name="after" value="{{after}}"><br>
+    {% if rights %}
+        <label for="license">Licenses:</label>
+        {% for license in rights %}
+            <input type="checkbox" name="licence" value="{{license}}">{{license}}
+        {% endfor %}
+    {% endif %}<br>
+    <input type="submit" value="Search">
+</form>
 {% endblock %}

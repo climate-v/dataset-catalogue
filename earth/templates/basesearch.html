@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+
+
+{% block content %}
+    <div id=searchform>
+        <h1> Detailed Search </h1>
+        {% block searchform %}
+        {% endblock %}
+    </div>
+    <div id=searchresults>
+        {% block searchresults %}
+            {% if results %}
+            <h1> Results </h1>
+                <ul>
+                {% for dataset in results %}
+                    <li>
+                        <a href="/dataset/{{ dataset.basename }}">{{dataset.basename}}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

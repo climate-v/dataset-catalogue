@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+    <h1>Search</h1>
+    <div id="searchform">
+        <form autocomplete="off" action="/search">
+            <input id="keywords" type="text" name="keyword" placeholder="Search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+{% endblock %}

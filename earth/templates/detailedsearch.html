@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+    <h1>Detailed Search</h1>
+    <div id="searchform">
+        <form autocomplete="off" action="/detailedsearch">
+            <input id="countries" type="text" name="country" placeholder="Country">
+            <input id="formats" type="text" name="format" placeholder="Format">
+            <input id="regions" type="text" name="region" placeholder="Region">
+            <label for="before">Before:</label>
+            <input id="before" type="date" name="before">
+            <label for="after">After:</label>
+            <input id="after" type="date" name="after">
+            {% if rights %}
+                <label for="license">Licenses:</label>
+                {% for license in rights %}
+                    <input type="checkbox" name="licence" value="{{license}}">{{license}}
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="Search"><br>
+        </form>
+    </div>
+{% endblock %}

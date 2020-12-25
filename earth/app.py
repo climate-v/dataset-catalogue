@@ -5,14 +5,20 @@ from .validate_yaml import get_yaml
 import os
 app = Flask(__name__)
 
-# Initiate database
+
+def create_db(yaml_filelist):
+    db = []
+    for x in yaml_files:
+        entry = get_yaml(x)
+        entry["id"] = x
+        entry["basename"] = os.path.basename(x)[:-4]
+        db.append(entry)
+    return db
+
+
 catalog_location = os.environ.get("CATALOG_FOLDER", os.path.curdir)
 yaml_files = glob(os.path.join(catalog_location, "*.yml"))
-db = []
-for x in yaml_files:
-    entry = get_yaml(x)
-    entry["id"] = x
-    db.append(entry)
+db = create_db(yaml_files)
 
 
 def _uniques(key):

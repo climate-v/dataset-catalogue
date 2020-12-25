@@ -14,4 +14,13 @@
         {% else %}
         <h1>Sorry, no catalogues!</h1>
     {% endif %}
+    <form action="/search">
+        <input type="submit" value="Go to search">
+    </form>
+    <form action="/detailedsearch">
+        <input type="submit" value="Go to detailed search">
+    </form>
+    <form action="/dataset/dataset_kit">
+        <input type="submit" value="Dataset KIT">
+    </form>
 {% endblock %}

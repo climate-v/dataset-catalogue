@@ -29,8 +29,8 @@ def hello_world():
 
 @app.route('/search')
 def search():
-    req = request.args
-    return render_template("search.html")
+    keywords = request.args.get("keywords", "")
+    return render_template("search.html", keywords=keywords)
 
 
 @app.route('/detailedsearch')

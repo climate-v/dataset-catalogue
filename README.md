@@ -92,6 +92,7 @@ CREATE TABLE orders (
  info json NOT NULL
 );
 ```
+
 Add several rows
 ```
 INSERT INTO orders (info)
@@ -100,22 +101,21 @@ VALUES('{ "customer": "Lily Bush", "items": {"product": "Diaper","qty": 24}}'),
       ('{ "customer": "Mary Clark", "items": {"product": "Toy Train","qty": 2}}');
 ```
 
+### Exact (substring) search
+
 Search individual keys using LIKE
 ```
 SELECT * FROM orders WHERE info ->> 'customer' LIKE '%osh%';
 ```
+
+### trigram fuzzy search (in order)
 
 Add trigram extension
 ```
 CREATE EXTENSION pg_trgm;
 ```
 
-Search using trigrams
-```
-SELECT * FROM orders WHERE SIMILARITY(info ->> 'customer', 'Jos') > 0.1;
-```
-
-Search using trigrams
+Search using trigrams with custom threshold (default is 0.3)
 ```
 SELECT * FROM orders WHERE SIMILARITY(info ->> 'customer', 'Jos') > 0.1;
 ```
@@ -123,7 +123,95 @@ SELECT * FROM orders WHERE SIMILARITY(info ->> 'customer', 'Jos') > 0.1;
 Search and sort all entries using trigrams
 ```
 SELECT * FROM orders ORDER BY SIMILARITY(info ->> 'customer', 'Jos') DESC LIMIT 3;
+SELECT * FROM orders ORDER BY (info ->> 'customer') % 'Jos' DESC LIMIT 3;
+SELECT * FROM orders ORDER BY 'Jos' % (info ->> 'customer') DESC LIMIT 3;
 ```
+
+### trigram fuzzy search (in artifical order)
+
+For partly comparison the ANY operator lets you compare against an array of strings
+```
+SELECT * FROM orders ORDER BY 'Josham' % ANY(STRING_TO_ARRAY((info ->> 'customer'), ' ')) DESC LIMIT 3;
+```
+
+### phonetic search
+
+Add phonetic extension using SOUNDEX and METAPHONE
+```
+CREATE EXTENSION fuzzystrmatch;
+```
+
+### phonetic fuzzy search (this applies SOUNDEX on the whole customer string)
+```
+SELECT * FROM orders WHERE SOUNDEX('Jos Willi') % SOUNDEX(info ->> 'customer');
+```
+
+Split string into several words
+```sql
+SELECT STRING_TO_ARRAY((info ->> 'customer'), ' ') FROM orders;  -- Split each name of customer
+SELECT SOUNDEX(info ->> 'customer') FROM orders;  -- Apply soundex to each customer name
+SELECT METAPHONE(info ->> 'customer', 10) FROM orders;  -- Apply metaphone to each customer name with code word length limit
+```
+
+Define function to apply METAPHONE/SOUNDEX on an array of text
+```sql
+/* To efficiently use these methods on an array,
+the query must also be split into an array of strings.
+Otherwise the query results are not applicable. */
+
+-- METAPHONE
+CREATE OR REPLACE FUNCTION METAPHONE(text[], int)
+RETURNS text[]
+AS
+$$
+DECLARE
+   arrStrings ALIAS FOR $1;
+   maxCodeLength ALIAS FOR $2;
+   returnArray text[];
+BEGIN
+  FOR i IN array_lower(arrStrings, 1)..array_upper(arrStrings, 1) LOOP
+    returnArray[i] := METAPHONE(arrStrings[i], maxCodeLength);
+  END LOOP;
+  RETURN returnArray;
+END;
+$$
+LANGUAGE plpgsql
+    STABLE
+RETURNS NULL ON NULL INPUT;
+
+-- SOUNDEX
+CREATE OR REPLACE FUNCTION SOUNDEX(text[])
+RETURNS text[]
+AS
+$$
+DECLARE
+   arrStrings ALIAS FOR $1;
+   returnArray text[];
+BEGIN
+  FOR i IN array_lower(arrStrings, 1)..array_upper(arrStrings, 1) LOOP
+    returnArray[i] := SOUNDEX(arrStrings[i]);
+  END LOOP;
+  RETURN returnArray;
+END;
+$$
+LANGUAGE plpgsql
+    STABLE
+RETURNS NULL ON NULL INPUT;
+
+```
+
+For international search one can use DMETAPHONE or DMETAPHONE_ALT
+```
+SELECT * FROM orders ORDER BY DMETAPHONE('Jos William') % DMETAPHONE(info ->> 'customer') DESC;
+```
+
+Order by LEVENSHTEIN distance
+```
+SELECT * FROM orders ORDER BY LEVENSHTEIN(info ->> 'customer', 'Jos Willi') ASC;
+```
+
+Next step is to combine these results and maybe return a weighted average for the final result table.
+Additionally it would be nice to have the actually calculated values returned from the database.
 
 
 ## Resources

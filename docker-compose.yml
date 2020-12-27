@@ -24,5 +24,8 @@ services:
       FLASK_RUN_PORT: 5050
       FLASK_RUN_HOST: "0.0.0.0"
       CATALOG_FOLDER: "/home/python/tests"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres_db
     depends_on:
       - db

@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres_db
+      POSTGRES_URL: "db:5432"
 
   earth:
     image: dataset-earth
@@ -27,5 +28,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres_db
+      POSTGRES_URL: "db:5432"
     depends_on:
       - db

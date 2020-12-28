@@ -27,4 +27,6 @@ RUN poetry install --no-interaction --no-ansi
 
 COPY . /home/python
 
-CMD ["flask", "run"]
+RUN poetry install
+
+CMD ["start"]

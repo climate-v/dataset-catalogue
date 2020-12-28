@@ -4,11 +4,8 @@ services:
 
   db:
     image: postgres:12.5
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres_db
-      POSTGRES_URL: "db:5432"
+    env_file:
+      - env/.postgres.env
 
   earth:
     image: dataset-earth
@@ -19,15 +16,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "./:/home/python"
-    environment:
-      FLASK_APP: /home/python/earth/app.py
-      FLASK_ENV: development
-      FLASK_RUN_PORT: 5050
-      FLASK_RUN_HOST: "0.0.0.0"
-      CATALOG_FOLDER: "/home/python/tests"
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres_db
-      POSTGRES_URL: "db:5432"
+    env_file:
+      - env/.postgres.env
+      - env/.earth.env
     depends_on:
       - db

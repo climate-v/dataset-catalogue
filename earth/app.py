@@ -45,6 +45,17 @@ def _load_datasets_into(db):
         db.session.add(entry)
         db.session.commit()
 
+# TODO: Currently inefficient due to engine creation at every call
+# TODO: Run commands via SQLAlchemy via JSONB https://stackoverflow.com/questions/29974143/python-sqlalchemy-and-postgres-how-to-query-a-json-element
+def raw_sql(cmd):
+    """ Execute raw SQL command on the database
+    """
+    from sqlalchemy import create_engine
+    db_uri = _get_db_uri()
+    engine = create_engine(db_uri)
+    with engine.connect() as con:
+        result = con.execute(cmd)
+    return result
 
 ##############
 ### Routes ###
@@ -65,7 +76,7 @@ def search():
 
 @app.route('/detailedsearch')
 def detailedsearch(rights=None):
-    results = Dataset.query.all()
+    results = raw_sql('SELECT * FROM dataset')
     return render_template("detailedsearch.html", **request.args, results=results)
 
 

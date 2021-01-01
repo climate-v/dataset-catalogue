@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "./earth/schema.json": ".datasets.earth.yml"
+    }
+}

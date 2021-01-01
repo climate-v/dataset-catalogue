@@ -213,6 +213,12 @@ SELECT * FROM orders ORDER BY LEVENSHTEIN(info ->> 'customer', 'Jos Willi') ASC;
 Next step is to combine these results and maybe return a weighted average for the final result table.
 Additionally it would be nice to have the actually calculated values returned from the database.
 
+## Enable JSON Schema for VSCode
+
+The json schema can also be used to validate local files.
+An example setting is added in [`./vscode/settings.json`](.vscode/settings.json) for VSCode or Codium.
+Please install the yaml extension [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+
 
 ## Resources
 

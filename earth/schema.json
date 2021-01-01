@@ -8,27 +8,66 @@
     "additionalProperties": false,
     "required": ["title", "description", "creator", "rights"],
     "properties": {
-        "title":   { "type": "string" },
-        "creator":   { "type": "array", "items": { "type": "string"} },
-        "subject":   { "type": "array", "items": { "type": "string"} },
-        "description":   { "type": "string" },
-        "publisher":   { "type": "array", "items": { "type": "string"} },
-        "contributor":   { "type": "array", "items": { "type": "string"} },
-        "date":   { "type": "array", "items": { "type": "string"} },
-        "type":   { "type": "array", "items": { "type": "string"} },
-        "format":   { "$ref": "#/definitions/dataformats" },
-        "identifier":   { "type": "array", "items": { "type": "string"} },
-        "source":   { "type": "array", "items": { "type": "string"} },
-        "language":   { "type": "array", "items": { "type": "string"} },
-        "relation":   { "type": "array", "items": { "type": "string"} },
-        "coverage":   { "type": "array", "items": { "type": "string"} },
-        "rights":  { "$ref": "#/definitions/license" }
+        "contributor":   {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "An entity responsible for making contributions to the resource" },
+        "coverage":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant." },
+        "creator":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "An entity primarily responsible for making the resource." },
+        "date":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "A point or period of time associated with an event in the lifecycle of the resource." },
+        "description":   {
+            "type": "string",
+            "description": "An account of the resource." },
+        "format":   {
+            "$ref": "#/definitions/dataformats" },
+        "identifier":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "An unambiguous reference to the resource within a given context." },
+        "language":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "A language of the resource." },
+        "publisher":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "An entity responsible for making the resource available." },
+        "relation":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "A related resource." },
+        "rights":  {
+            "$ref": "#/definitions/license" },
+        "source":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "A related resource from which the described resource is derived." },
+        "subject":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "The topic of the resource." },
+        "title":   {
+            "type": "string",
+            "description": "A name given to the resource." },
+        "type":   {
+            "type": "array",
+            "items": { "type": "string"},
+            "description": "The nature or genre of the resource." }
     },
 
     "definitions": {
         "dataformats": {
             "type": "array",
-            "description": "Supported data formats for the dataset",
+            "description": "The file format, physical medium, or dimensions of the resource.",
             "items": {
                 "type": "string",
                 "enum": ["netCDF3", "pdf", "csv", "wms", "wps", "netCDF4", "http"]
@@ -36,7 +75,7 @@
         },
         "license": {
             "type": "string",
-            "description": "License for the data",
+            "description": "Information about rights held in and over the resource.",
             "enum": [
                 "public domain",
                 "PDDL",

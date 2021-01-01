@@ -1,10 +1,15 @@
-title:
-    - rubber
-    - drew
-    - uncle
-    - dawn
-    - leg
-    - memory
+title: "An example DWD dataset"
+description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+dolor sit amet."
+creator:
+    - "DWD"
 subject:
     - canal
     - meat
@@ -12,5 +17,4 @@ subject:
     - night
     - period
     - liquid
-rights:
-    - MIT
+rights: public domain

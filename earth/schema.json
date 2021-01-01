@@ -6,6 +6,7 @@
     "description": "A single dataset in the catalogue",
     "type": "object",
     "additionalProperties": false,
+    "required": ["title", "description", "creator", "rights"],
     "properties": {
         "title":   { "type": "string" },
         "creator":   { "type": "array", "items": { "type": "string"} },

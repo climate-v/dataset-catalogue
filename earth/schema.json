@@ -7,10 +7,10 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "title":   { "type": "array", "items": { "type": "string"} },
+        "title":   { "type": "string" },
         "creator":   { "type": "array", "items": { "type": "string"} },
         "subject":   { "type": "array", "items": { "type": "string"} },
-        "description":   { "type": "array", "items": { "type": "string"} },
+        "description":   { "type": "string" },
         "publisher":   { "type": "array", "items": { "type": "string"} },
         "contributor":   { "type": "array", "items": { "type": "string"} },
         "date":   { "type": "array", "items": { "type": "string"} },

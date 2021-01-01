@@ -8,11 +8,14 @@ from flask.json import jsonify
 from .validate_yaml import get_yaml
 from .base import app, db, _get_db_uri
 
-def main():
+def initdb():
     db.drop_all()
     db.create_all()
     _load_datasets_into(db)
+    raw_sql('CREATE EXTENSION IF NOT EXISTS fuzzystrmatch')
+    raw_sql('CREATE EXTENSION IF NOT EXISTS pg_trgm')
 
+def main():
     app.run(host=os.environ.get('FLASK_RUN_HOST'),
             port=os.environ.get('FLASK_RUN_PORT'))
 

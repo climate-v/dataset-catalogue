@@ -21,4 +21,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 validate = "earth.validate_yaml:main"
-start = "earth.app:main"
+initdb = "earth.app:initdb"
+run = "earth.app:main"

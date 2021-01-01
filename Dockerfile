@@ -29,4 +29,4 @@ COPY . /home/python
 
 RUN poetry install
 
-CMD ["start"]
+CMD initdb && run
